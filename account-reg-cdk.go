@@ -1,6 +1,8 @@
 package main
 
 import (
+	"account-reg-cdk/pkg/iam"
+
 	"github.com/aws/aws-cdk-go/awscdk/v2"
 	// "github.com/aws/aws-cdk-go/awscdk/v2/awssqs"
 	"github.com/aws/constructs-go/constructs/v10"
@@ -16,14 +18,18 @@ func NewAccountRegCdkStack(scope constructs.Construct, id string, props *Account
 	if props != nil {
 		sprops = props.StackProps
 	}
+	sprops.AnalyticsReporting = jsii.Bool(false)
+	sprops.Synthesizer = awscdk.NewDefaultStackSynthesizer(&awscdk.DefaultStackSynthesizerProps{
+		GenerateBootstrapVersionRule: jsii.Bool(false),
+	})
+
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
-	// The code that defines your stack goes here
-
-	// example resource
-	// queue := awssqs.NewQueue(stack, jsii.String("AccountRegCdkQueue"), &awssqs.QueueProps{
-	// 	VisibilityTimeout: awscdk.Duration_Seconds(jsii.Number(300)),
-	// })
+	mp := iam.ManagedPolicy(stack, "AcornManagedPolicy", iam.Statement{
+		Action:   []string{"ec2:DescribeInstance"},
+		Resource: []string{"*"},
+	})
+	iam.AssumeRole(stack, "AcornRole", "arn:aws:iam::922761411349:root", mp, nil)
 
 	return stack
 }
