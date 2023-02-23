@@ -12,23 +12,14 @@ type Statement struct {
 }
 
 func AssumeRole(scope constructs.Construct, name, principalARN string, policy awsiam.ManagedPolicy, externalID any) awsiam.IRole {
-	ps := awsiam.NewPolicyStatement(&awsiam.PolicyStatementProps{
-		Actions: jsii.Strings("sts:AssumeRole"),
-		Conditions: &map[string]any{
-			"StringEquals": map[string]any{
-				"sts:ExternalId": "something",
-			},
-		},
-		Effect: awsiam.Effect_ALLOW,
-	})
-
 	principal := awsiam.NewArnPrincipal(jsii.String(principalARN))
-	principal.AddToAssumeRolePolicy(awsiam.NewPolicyDocument(&awsiam.PolicyDocumentProps{
-		Statements: &[]awsiam.PolicyStatement{ps},
-	}))
 
 	role := awsiam.NewRole(scope, jsii.String(name), &awsiam.RoleProps{
-		AssumedBy:       principal,
+		AssumedBy: awsiam.NewPrincipalWithConditions(principal, &map[string]any{
+			"StringEquals": map[string]any{
+				"sts:ExternalId": "foo",
+			},
+		}),
 		ManagedPolicies: &[]awsiam.IManagedPolicy{policy},
 	})
 
