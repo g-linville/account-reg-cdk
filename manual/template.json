@@ -34,333 +34,218 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Sid": "GeneralSpotInstancesAccess",
+              "Effect": "Allow",
               "Action": [
-                "ec2:RequestSpotInstances",
-                "ec2:CancelSpotInstanceRequests",
-                "ec2:CreateSpotDatafeedSubscription",
-                "ec2:Describe*",
+                "ec2:CreateLaunchTemplate",
+                "ec2:DeleteLaunchTemplate",
+                "ec2:CreateLaunchTemplateVersion",
+                "ec2:AcceptVpcPeeringConnection",
+                "ec2:AcceptVpcEndpointConnections",
+                "ec2:AllocateAddress",
+                "ec2:AssignIpv6Addresses",
+                "ec2:AssignPrivateIpAddresses",
                 "ec2:AssociateAddress",
-                "ec2:AttachVolume",
-                "ec2:ConfirmProductInstance",
-                "ec2:CopyImage",
-                "ec2:CopySnapshot",
-                "ec2:CreateImage",
-                "ec2:CreateSnapshot",
+                "ec2:AssociateDhcpOptions",
+                "ec2:AssociateRouteTable",
+                "ec2:AssociateSubnetCidrBlock",
+                "ec2:AssociateVpcCidrBlock",
+                "ec2:AttachClassicLinkVpc",
+                "ec2:AttachInternetGateway",
+                "ec2:AttachNetworkInterface",
+                "ec2:AttachVpnGateway",
+                "ec2:AuthorizeSecurityGroupEgress",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:CreateCarrierGateway",
+                "ec2:CreateCustomerGateway",
+                "ec2:CreateDefaultSubnet",
+                "ec2:CreateDefaultVpc",
+                "ec2:CreateDhcpOptions",
+                "ec2:CreateEgressOnlyInternetGateway",
+                "ec2:CreateFlowLogs",
+                "ec2:CreateInternetGateway",
+                "ec2:CreateLocalGatewayRouteTableVpcAssociation",
+                "ec2:CreateNatGateway",
+                "ec2:CreateNetworkAcl",
+                "ec2:CreateNetworkAclEntry",
+                "ec2:CreateNetworkInterface",
+                "ec2:CreateNetworkInterfacePermission",
+                "ec2:CreateRoute",
+                "ec2:CreateRouteTable",
+                "ec2:CreateSecurityGroup",
+                "ec2:CreateSubnet",
                 "ec2:CreateTags",
-                "ec2:CreateVolume",
+                "ec2:CreateVpc",
+                "ec2:CreateVpcEndpoint",
+                "ec2:CreateVpcEndpointConnectionNotification",
+                "ec2:CreateVpcEndpointServiceConfiguration",
+                "ec2:CreateVpcPeeringConnection",
+                "ec2:CreateVpnConnection",
+                "ec2:CreateVpnConnectionRoute",
+                "ec2:CreateVpnGateway",
+                "ec2:DeleteCarrierGateway",
+                "ec2:DeleteCustomerGateway",
+                "ec2:DeleteDhcpOptions",
+                "ec2:DeleteEgressOnlyInternetGateway",
+                "ec2:DeleteFlowLogs",
+                "ec2:DeleteInternetGateway",
+                "ec2:DeleteLocalGatewayRouteTableVpcAssociation",
+                "ec2:DeleteNatGateway",
+                "ec2:DeleteNetworkAcl",
+                "ec2:DeleteNetworkAclEntry",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DeleteNetworkInterfacePermission",
+                "ec2:DeleteRoute",
+                "ec2:DeleteRouteTable",
+                "ec2:DeleteSecurityGroup",
+                "ec2:DeleteSubnet",
                 "ec2:DeleteTags",
+                "ec2:DeleteVpc",
+                "ec2:DeleteVpcEndpoints",
+                "ec2:DeleteVpcEndpointConnectionNotifications",
+                "ec2:DeleteVpcEndpointServiceConfigurations",
+                "ec2:DeleteVpcPeeringConnection",
+                "ec2:DeleteVpnConnection",
+                "ec2:DeleteVpnConnectionRoute",
+                "ec2:DeleteVpnGateway",
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeAddresses",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeCarrierGateways",
+                "ec2:DescribeClassicLinkInstances",
+                "ec2:DescribeCustomerGateways",
+                "ec2:DescribeDhcpOptions",
+                "ec2:DescribeEgressOnlyInternetGateways",
+                "ec2:DescribeFlowLogs",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeIpv6Pools",
+                "ec2:DescribeLocalGatewayRouteTables",
+                "ec2:DescribeLocalGatewayRouteTableVpcAssociations",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeMovingAddresses",
+                "ec2:DescribeNatGateways",
+                "ec2:DescribeNetworkAcls",
+                "ec2:DescribeNetworkInterfaceAttribute",
+                "ec2:DescribeNetworkInterfacePermissions",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribePrefixLists",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroupReferences",
+                "ec2:DescribeSecurityGroupRules",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeStaleSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeTags",
+                "ec2:DescribeVpcAttribute",
+                "ec2:DescribeVpcClassicLink",
+                "ec2:DescribeVpcClassicLinkDnsSupport",
+                "ec2:DescribeVpcEndpointConnectionNotifications",
+                "ec2:DescribeVpcEndpointConnections",
+                "ec2:DescribeVpcEndpoints",
+                "ec2:DescribeVpcEndpointServiceConfigurations",
+                "ec2:DescribeVpcEndpointServicePermissions",
+                "ec2:DescribeVpcEndpointServices",
+                "ec2:DescribeVpcPeeringConnections",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeVpnConnections",
+                "ec2:DescribeVpnGateways",
+                "ec2:DetachClassicLinkVpc",
+                "ec2:DetachInternetGateway",
+                "ec2:DetachNetworkInterface",
+                "ec2:DetachVpnGateway",
+                "ec2:DisableVgwRoutePropagation",
+                "ec2:DisableVpcClassicLink",
+                "ec2:DisableVpcClassicLinkDnsSupport",
                 "ec2:DisassociateAddress",
-                "ec2:ModifyImageAttribute",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:MonitorInstances",
-                "ec2:RebootInstances",
-                "ec2:RegisterImage",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:TerminateInstances",
-                "ec2:UnassignPrivateIpAddresses",
-                "ec2:DeregisterImage",
-                "ec2:DeleteSnapshot",
-                "ec2:DeleteVolume",
-                "ec2:ModifyReservedInstances",
-                "ec2:CreateReservedInstancesListing",
-                "ec2:CancelReservedInstancesListing",
+                "ec2:DisassociateRouteTable",
+                "ec2:DisassociateSubnetCidrBlock",
+                "ec2:DisassociateVpcCidrBlock",
+                "ec2:EnableVgwRoutePropagation",
+                "ec2:EnableVpcClassicLink",
+                "ec2:EnableVpcClassicLinkDnsSupport",
                 "ec2:ModifyNetworkInterfaceAttribute",
-                "ec2:DeleteNetworkInterface"
+                "ec2:ModifySecurityGroupRules",
+                "ec2:ModifySubnetAttribute",
+                "ec2:ModifyVpcAttribute",
+                "ec2:ModifyVpcEndpoint",
+                "ec2:ModifyVpcEndpointConnectionNotification",
+                "ec2:ModifyVpcEndpointServiceConfiguration",
+                "ec2:ModifyVpcEndpointServicePermissions",
+                "ec2:ModifyVpcPeeringConnectionOptions",
+                "ec2:ModifyVpcTenancy",
+                "ec2:MoveAddressToVpc",
+                "ec2:RejectVpcEndpointConnections",
+                "ec2:RejectVpcPeeringConnection",
+                "ec2:ReleaseAddress",
+                "ec2:ReplaceNetworkAclAssociation",
+                "ec2:ReplaceNetworkAclEntry",
+                "ec2:ReplaceRoute",
+                "ec2:ReplaceRouteTableAssociation",
+                "ec2:ResetNetworkInterfaceAttribute",
+                "ec2:RestoreAddressToClassic",
+                "ec2:RevokeSecurityGroupEgress",
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:UnassignIpv6Addresses",
+                "ec2:UnassignPrivateIpAddresses",
+                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+                "ec2:UpdateSecurityGroupRuleDescriptionsIngress"
               ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
+              "Resource": "*"
             },
             {
-              "Sid": "AccessELB",
-              "Action": [
-                "elasticloadbalancing:Describe*",
-                "elasticloadbalancing:Deregister*",
-                "elasticloadbalancing:Register*",
-                "elasticloadbalancing:RemoveTags",
-                "elasticloadbalancing:RegisterTargets",
-                "elasticloadbalancing:EnableAvailabilityZonesForLoadBalancer",
-                "elasticloadbalancing:DisableAvailabilityZonesForLoadBalancer",
-                "elasticloadbalancing:DescribeTags",
-                "elasticloadbalancing:CreateTargetGroup",
-                "elasticloadbalancing:DeleteTargetGroup",
-                "elasticloadbalancing:ModifyRule",
-                "elasticloadbalancing:AddTags",
-                "elasticloadbalancing:ModifyTargetGroupAttributes",
-                "elasticloadbalancing:ModifyTargetGroup",
-                "elasticloadbalancing:ModifyListener"
-              ],
               "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessCloudWatch",
               "Action": [
-                "cloudwatch:DescribeAlarmHistory",
-                "cloudwatch:DescribeAlarms",
-                "cloudwatch:DescribeAlarmsForMetric",
-                "cloudwatch:GetMetricStatistics",
-                "cloudwatch:GetMetricData",
-                "cloudwatch:ListMetrics",
-                "cloudwatch:PutMetricData",
-                "cloudwatch:PutMetricAlarm"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessSNS",
-              "Action": [
-                "sns:Publish",
-                "sns:ListTopics",
-                "sns:CreateTopic",
-                "sns:GetTopicAttributes",
-                "sns:ListSubscriptionsByTopic",
-                "sns:Subscribe"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessIAM",
-              "Action": [
-                "iam:AddRoleToInstanceProfile",
-                "iam:ListInstanceProfiles",
-                "iam:ListInstanceProfilesForRole",
-                "iam:PassRole",
-                "iam:ListRoles",
-                "iam:ListAccountAliases",
-                "iam:GetPolicyVersion",
-                "iam:ListPolicies",
-                "iam:GetPolicy",
-                "iam:ListAttachedRolePolicies",
-                "organizations:ListAccounts",
-                "iam:CreateServiceLinkedRole",
+                "iam:GetRole",
+                "iam:AttachRolePolicy",
+                "iam:CreateRole",
                 "iam:PutRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetRolePolicy",
-                "iam:ListRolePolicies",
-                "iam:SimulatePrincipalPolicy"
+                "iam:CreateInstanceProfile",
+                "iam:RemoveRoleFromInstanceProfile",
+                "iam:DeleteRole",
+                "iam:DeleteInstanceProfile",
+                "iam:AddRoleToInstanceProfile",
+                "iam:PassRole",
+                "iam:DetachRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:CreateOpenIDConnectProvider",
+                "iam:GetOpenIDConnectProvider",
+                "iam:DeleteOpenIDConnectProvider",
+                "iam:UpdateOpenIDConnectProviderThumbprint",
+                "iam:AddClientIDToOpenIDConnectProvider",
+                "iam:RemoveClientIDFromOpenIDConnectProvider"
               ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
+              "Resource": "*"
             },
             {
-              "Sid": "GeneralAccessElaticBeanstalk",
+              "Effect": "Allow",
               "Action": [
-                "elasticbeanstalk:Describe*",
-                "elasticbeanstalk:RequestEnvironmentInfo",
-                "elasticbeanstalk:RetrieveEnvironmentInfo",
-                "elasticbeanstalk:ValidateConfigurationSettings",
-                "elasticbeanstalk:UpdateEnvironment",
-                "elasticbeanstalk:ListPlatformVersions",
-                "cloudformation:GetTemplate",
-                "cloudformation:DescribeStackResources",
-                "cloudformation:DescribeStackResource",
+                "aps:*"
+              ],
+              "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "sqs:*",
+                "events:*"
+              ],
+              "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
                 "cloudformation:DescribeStacks",
-                "cloudformation:ListStackResources",
+                "cloudformation:CreateStack",
                 "cloudformation:UpdateStack",
-                "cloudformation:DescribeStackEvents",
-                "logs:PutRetentionPolicy",
-                "logs:createLogGroup",
-                "elasticbeanstalk:ListTagsForResource"
+                "cloudformation:DeleteStack",
+                "cloudformation:CreateChangeSet",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:DescribeStackResource",
+                "cloudformation:DescribeStackResources",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:GetTemplateSummary"
               ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessAutoScalingGroups",
-              "Action": [
-                "autoscaling:*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessEks",
-              "Action": [
-                "eks:ListClusters",
-                "eks:DescribeNodegroup",
-                "eks:ListNodegroups"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessEMR",
-              "Action": [
-                "elasticmapreduce:*",
-                "s3:GetObject"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessECS",
-              "Action": [
-                "ecs:List*",
-                "ecs:Describe*",
-                "ecs:DeregisterContainerInstance",
-                "ecs:UpdateContainerInstancesState",
-                "ecs:RegisterTaskDefinition",
-                "ecs:CreateService",
-                "application-autoscaling:PutScalingPolicy",
-                "application-autoscaling:RegisterScalableTarget",
-                "application-autoscaling:Describe*",
-                "ecs:putAttributes"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessBatch",
-              "Action": [
-                "batch:List*",
-                "batch:Describe*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessOpsWorks",
-              "Action": [
-                "opsworks:DeregisterInstance",
-                "opsworks:DescribeInstances",
-                "opsworks:DescribeStacks",
-                "opsworks:DescribeLayers"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessCodeDeploy",
-              "Action": [
-                "codedeploy:*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessGeneralS3",
-              "Action": [
-                "s3:GetObject",
-                "s3:List*",
-                "s3:GetBucketLocation"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccessRoute53",
-              "Action": [
-                "route53:ListHostedZones",
-                "route53:ListResourceRecordSets",
-                "route53:ChangeResourceRecordSets"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "AccesS3forElasticBeanstalk",
-              "Effect": "Allow",
-              "Action": [
-                "s3:*"
-              ],
-              "Resource": [
-                "arn:aws:s3:::elasticbeanstalk*"
-              ]
-            },
-            {
-              "Sid": "DockerBasedBeanstalkEnvironments",
-              "Action": [
-                "ecs:Poll",
-                "ecs:DiscoverPollEndpoint",
-                "ecs:StartTelemetrySession",
-                "ecs:StartTask",
-                "ecs:StopTask",
-                "ecs:DescribeContainerInstances",
-                "ecs:RegisterContainerInstance",
-                "ecs:DeregisterContainerInstance",
-                "ecs:SubmitContainerStateChange",
-                "ecs:SubmitTaskStateChange"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "ElasticFileSystem",
-              "Action": [
-                "elasticfilesystem:DescribeFileSystems"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "Pricing",
-              "Action": [
-                "pricing:GetProducts"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "SavingsPlan",
-              "Action": [
-                "savingsplans:Describe*",
-                "savingsplans:List*"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
-            },
-            {
-              "Sid": "Lambda",
-              "Action": [
-                "lambda:ListFunctions"
-              ],
-              "Effect": "Allow",
-              "Resource": [
-                "*"
-              ]
+              "Resource": "*"
             }
           ]
         }
@@ -375,7 +260,9 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "AWS": "arn:aws:iam::922761411349:root"
+                "AWS": {
+                  "Ref": "Principal"
+                }
               },
               "Action": "sts:AssumeRole",
               "Condition": {
