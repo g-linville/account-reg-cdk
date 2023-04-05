@@ -1,0 +1,28 @@
+name: deploy-template
+
+on:
+  push:
+    paths:
+      - 'template/**'
+    branches:
+      - main
+
+jobs:
+  deploy_template:
+    name: Deploy template to S3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Copy files to the test website with the AWS CLI
+        run: |
+          latest=$(ls template | sort -V | tail -1)
+          jq '.Resources.AcornSetAccountCredentials.Properties.ServiceToken."Fn::Sub"[0] = "${{ secrets.AWS_LAMBDA_FN_ARN }}" | .Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}"' template/$latest > template/$latest
+          aws s3 sync template s3://${{ secrets.CF_TEMPLATE_BUCKET }}

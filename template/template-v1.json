@@ -13,7 +13,7 @@
   "Parameters": {
     "Principal": {
       "Type": "String",
-      "Default": "arn:aws:iam::223342718081:role/darren-test-registration"
+      "Default": "arn:aws:iam::718995686428:role/byoc-source-trust-role"
     },
     "ExternalId": {
       "Type": "String"

@@ -93,7 +93,7 @@ func handleResponse(event Event, r Response) (string, error) {
 	return string(eventResponse), err
 }
 
-func HandleRequest(ctx context.Context, event Event) (string, error) {
+func HandleRequest(_ context.Context, event Event) (string, error) {
 	logEvent(event)
 
 	if event.RequestType != "Create" {
@@ -102,6 +102,15 @@ func HandleRequest(ctx context.Context, event Event) (string, error) {
 			StackId:            event.StackId,
 			RequestId:          event.RequestId,
 			PhysicalResourceId: "unknown",
+			LogicalResourceId:  event.LogicalResourceId,
+		})
+	}
+	if event.ResourceProperties.Token == "" {
+		return handleResponse(event, Response{
+			Status:             "SUCCESS",
+			StackId:            event.StackId,
+			RequestId:          event.RequestId,
+			PhysicalResourceId: "no-token",
 			LogicalResourceId:  event.LogicalResourceId,
 		})
 	}

@@ -1,0 +1,23 @@
+name: build-lambda
+
+on:
+  pull_request:
+    paths-ignore:
+      - template/**
+    branches:
+      - main
+
+jobs:
+  deploy_lambda:
+    name: build and deploy lambda
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-go@v4
+        with:
+          cache: false
+          go-version: "1.20"
+      - name: make package
+        run: make package
