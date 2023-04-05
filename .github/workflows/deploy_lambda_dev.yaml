@@ -5,6 +5,7 @@ on:
   push:
     ignore-paths:
       - 'template/**'
+      - '.github/**'
     branches:
       - main
 
