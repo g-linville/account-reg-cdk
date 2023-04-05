@@ -1,5 +1,8 @@
 name: publish-lambda
 
+on:
+  workflow_dispatch:
+
 jobs:
   deploy_lambda:
     name: Build and deploy lambda
@@ -16,4 +19,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Publish new version of lambda
         run: |
-          aws lambda publish-version --function-name ${{ secrets.AWS_LAMBDA_NAME }}
+          aws lambda publish-version --function-name ${{ secrets.AWS_LAMBDA_FN_ARN }}

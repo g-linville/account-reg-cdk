@@ -29,4 +29,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy new code to lambda
         run: |
-          aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_NAME }} --zip-file fileb://aws-registration-callback.zip
+          aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_FN_ARN }} --zip-file fileb://aws-registration-callback.zip
