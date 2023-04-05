@@ -1,6 +1,7 @@
 name: deploy-template
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'template/**'
