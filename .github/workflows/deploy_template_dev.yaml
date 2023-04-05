@@ -26,4 +26,4 @@ jobs:
         run: |
           latest=$(ls template | sort -V | tail -1)
           jq '.Resources.AcornSetAccountCredentials.Properties.ServiceToken."Fn::Sub"[0] = "${{ secrets.AWS_LAMBDA_FN_ARN }}" | .Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}"' template/$latest > template/$latest
-          aws s3 sync template s3://${{ secrets.CF_TEMPLATE_BUCKET }}
+          aws s3 cp template/$latest s3://${{ secrets.CF_TEMPLATE_BUCKET }}/$latest
