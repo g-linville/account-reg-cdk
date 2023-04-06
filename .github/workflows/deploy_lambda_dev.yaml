@@ -11,6 +11,11 @@ on:
 
 jobs:
   deploy_lambda:
+    strategy:
+      matrix:
+        include:
+          - region: "us-east-2"
+            bucket: "acorn-provisioning-cf20230327205401904900000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +33,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - name: Deploy new code to lambda
+          aws-region: ${{ matrix.region }}
+      - name: Deploy new code to s3 bucket
         run: |
-          aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_FN_ARN }} --zip-file fileb://aws-registration-callback.zip
+          aws s3 cp aws-registration-callback.zip s3://${{ matrix.bucket }}/aws-registration-callback.zip --acl public-read

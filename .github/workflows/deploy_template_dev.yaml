@@ -10,6 +10,11 @@ on:
 
 jobs:
   deploy_template:
+    strategy:
+      matrix:
+        include:
+          - region: "us-east-2"
+            bucket: "acorn-provisioning-cf20230327205401904900000001"
     name: Deploy template to S3
     runs-on: ubuntu-latest
     steps:
@@ -21,9 +26,9 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ matrix.region }}
       - name: Copy files to the test website with the AWS CLI
         run: |
           latest=$(ls template | sort -V | tail -1)
-          jq '.Resources.AcornSetAccountCredentials.Properties.ServiceToken."Fn::Sub"[0] = "${{ secrets.AWS_LAMBDA_FN_ARN }}" | .Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}"' template/$latest > template/$latest.processed
-          aws s3 cp template/$latest.processed s3://${{ secrets.CF_TEMPLATE_BUCKET }}/$latest --acl public-read
+          jq '.Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}" | .Resources.AcornSetAccountCredentialsLambda.Properties.Code.S3Bucket = "${{ matrix.bucket }}"' template/$latest > template/$latest.processed
+          aws s3 cp template/$latest.processed s3://${{ matrix.bucket }}/$latest --acl public-read

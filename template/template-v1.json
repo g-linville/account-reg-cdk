@@ -301,36 +301,35 @@
         ]
       }
     },
-    "AcornSetAccountCredentials": {
-      "Type": "AWS::CloudFormation::CustomResource",
+    "AcornLambdaRole": {
+      "Type": "AWS::IAM::Role",
       "Properties": {
-        "ServiceToken": {
-          "Fn::Sub": [
-            "arn:aws:lambda:us-east-1:223342718081:function:acorn-set-credentials",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
             {
-              "Region": {
-                "Ref": "AWS::Region"
-              }
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
             }
           ]
+        }
+      }
+    },
+    "AcornSetAccountCredentialsLambda": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "SetAcornAccountCredentials",
+        "Role": {
+          "Fn::GetAtt": ["AcornLambdaRole","Arn"]
         },
-        "ExternalId": {
-          "Ref": "ExternalId"
-        },
-        "Arn": {
-          "Fn::GetAtt": [
-            "AcornRole",
-            "Arn"
-          ]
-        },
-        "Token": {
-          "Ref": "Token"
-        },
-        "CallbackURL": {
-          "Ref": "CallbackURL"
-        },
-        "StackId": {
-          "Ref": "AWS::StackId"
+        "Runtime": "go1.x",
+        "Handler": "aws-registration-callback",
+        "Code": {
+          "S3Bucket" : "BUCKET",
+          "S3Key" : "aws-registration-callback.zip"
         }
       }
     }
