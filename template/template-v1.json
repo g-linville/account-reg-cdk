@@ -320,6 +320,7 @@
     },
     "AcornSetAccountCredentialsLambda": {
       "Type": "AWS::Lambda::Function",
+      "DependsOn": "AcornLambdaRole",
       "Properties": {
         "FunctionName": "SetAcornAccountCredentials",
         "Role": {
@@ -330,6 +331,33 @@
         "Code": {
           "S3Bucket" : "BUCKET",
           "S3Key" : "aws-registration-callback.zip"
+        }
+      }
+    },
+    "AcornSetAccountCredentials": {
+      "Type": "AWS::CloudFormation::CustomResource",
+      "DependsOn": "AcornSetAccountCredentialsLambda",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": ["AcornSetAccountCredentialsLambda", "Arn"]
+        },
+        "ExternalId": {
+          "Ref": "ExternalId"
+        },
+        "Arn": {
+          "Fn::GetAtt": [
+            "AcornRole",
+            "Arn"
+          ]
+        },
+        "Token": {
+          "Ref": "Token"
+        },
+        "CallbackURL": {
+          "Ref": "CallbackURL"
+        },
+        "StackId": {
+          "Ref": "AWS::StackId"
         }
       }
     }
