@@ -38,4 +38,4 @@ jobs:
 
       - name: Push image
         run: |
-          docker push ${{ secret.ECR_REGISTRY }}:${{ env.TAG }}
+          docker push ${{ secrets.ECR_REGISTRY }}:${{ env.TAG }}
