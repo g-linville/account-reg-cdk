@@ -326,11 +326,8 @@
         "Role": {
           "Fn::GetAtt": ["AcornLambdaRole","Arn"]
         },
-        "Runtime": "go1.x",
-        "Handler": "aws-registration-callback",
         "Code": {
-          "S3Bucket" : "BUCKET",
-          "S3Key" : "aws-registration-callback.zip"
+          "ImageUri": "public.ecr.aws/aps/aws-registration-callback:latest"
         }
       }
     },
@@ -358,6 +355,9 @@
         },
         "StackId": {
           "Ref": "AWS::StackId"
+        },
+        "Region": {
+          "Ref": "AWS::Region"
         }
       }
     }

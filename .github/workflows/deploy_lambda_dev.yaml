@@ -1,4 +1,4 @@
-name: deploy-lambda
+name: Update Dev Lambda
 
 on:
   workflow_dispatch:
@@ -11,29 +11,30 @@ on:
 
 jobs:
   deploy_lambda:
-    strategy:
-      matrix:
-        include:
-          - region: "us-east-2"
-            bucket: "acorn-provisioning-cf20230327205401904900000001"
+    env:
+      TAG: main
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-      - uses: actions/setup-go@v4
-        with:
-          cache: false
-          go-version: "1.20"
-      - name: make package
-        run: make package
+
+      - name: Build
+        env:
+          REGISTRY: "${{ secrets.ECR_REGISTRY }}"
+          TAG: ${{ env.TAG }}
+        run: make image
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ matrix.region }}
-      - name: Deploy new code to s3 bucket
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Push image
         run: |
-          aws s3 cp aws-registration-callback.zip s3://${{ matrix.bucket }}/aws-registration-callback.zip --acl public-read
+          docker push ${{ secret.ECR_REGISTRY }}:${{ env.TAG }}
