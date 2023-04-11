@@ -23,12 +23,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build
-        env:
-          REGISTRY: "${{ secrets.ECR_REGISTRY }}"
-          TAG: ${{ env.TAG }}
-        run: make image
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -38,7 +32,11 @@ jobs:
 
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
 
-      - name: Push image
-        run: |
-          docker push ${{ secrets.ECR_REGISTRY }}:${{ env.TAG }}
+      - name: Build
+        env:
+          REGISTRY: "${{ secrets.ECR_REGISTRY }}"
+          TAG: ${{ env.TAG }}
+        run: make push-image

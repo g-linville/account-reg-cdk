@@ -8,3 +8,6 @@ TAG ?= dev
 REGISTRY ?= workstation
 image:
 	docker buildx build -t $(REGISTRY):$(TAG) .
+
+push-image:
+	docker buildx build -t $(REGISTRY):$(TAG) --push .
