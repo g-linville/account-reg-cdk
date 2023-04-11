@@ -322,6 +322,7 @@
       "Type": "AWS::Lambda::Function",
       "DependsOn": "AcornLambdaRole",
       "Properties": {
+        "PackageType": "Image",
         "FunctionName": "SetAcornAccountCredentials",
         "Role": {
           "Fn::GetAtt": ["AcornLambdaRole","Arn"]
