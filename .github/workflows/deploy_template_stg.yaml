@@ -1,12 +1,9 @@
-name: Deploy template to S3 for dev
+name: Deploy template to S3 for staging
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'template/**'
-    branches:
-      - main
+  schedule:
+    - cron: '00 10 * * *'   # time in UTC
 
 jobs:
   deploy_template:
@@ -14,18 +11,18 @@ jobs:
       matrix:
         include:
           - region: "us-east-2"
-            bucket: "acorn-provisioning-cf-us-east-220230411215929005300000001"
+            bucket: "acorn-provisioning-cf-us-east-220230411221247894300000001"
     name: Deploy template to S3
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-      - name: Configure AWS credentials from dev account
+      - name: Configure AWS credentials from stg account
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_STG }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_STG }}
           aws-region: ${{ matrix.region }}
       - name: Copy files to S3
         run: |

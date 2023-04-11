@@ -1,13 +1,7 @@
-name: Deploy lambda to S3 for dev
+name: Deploy lambda to S3 for prod
 
 on:
   workflow_dispatch:
-  push:
-    paths-ignore:
-      - 'template/**'
-      - '.github/**'
-    branches:
-      - main
 
 jobs:
   deploy_lambda:
@@ -15,7 +9,7 @@ jobs:
       matrix:
         include:
           - region: "us-east-2"
-            bucket: "acorn-provisioning-cf-us-east-220230411215929005300000001"
+            bucket: "acorn-provisioning-cf-us-east-220230411221940422300000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
@@ -31,8 +25,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_PROD }}
           aws-region: ${{ matrix.region }}
       - name: Deploy new code to s3 bucket
         run: |
