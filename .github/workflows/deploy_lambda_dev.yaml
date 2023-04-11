@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - region: "us-east-2"
-            bucket: "acorn-provisioning-cf20230327205401904900000001"
+            bucket: "acorn-provisioning-cf-us-east-220230411215929005300000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
@@ -36,4 +36,4 @@ jobs:
           aws-region: ${{ matrix.region }}
       - name: Deploy new code to s3 bucket
         run: |
-          aws s3 cp aws-registration-callback.zip s3://${{ matrix.bucket }}/aws-registration-callback.zip --acl public-read
+          aws s3 cp aws-registration-callback.zip s3://${{ matrix.bucket }}/aws-registration-callback.zip

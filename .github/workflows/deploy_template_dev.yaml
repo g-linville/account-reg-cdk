@@ -14,7 +14,7 @@ jobs:
       matrix:
         include:
           - region: "us-east-2"
-            bucket: "acorn-provisioning-cf20230327205401904900000001"
+            bucket: "acorn-provisioning-cf-us-east-220230411215929005300000001"
     name: Deploy template to S3
     runs-on: ubuntu-latest
     steps:
@@ -31,4 +31,4 @@ jobs:
         run: |
           latest=$(ls template | sort -V | tail -1)
           jq '.Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}" | .Resources.AcornSetAccountCredentialsLambda.Properties.Code.S3Bucket = "${{ matrix.bucket }}"' template/$latest > template/$latest.processed
-          aws s3 cp template/$latest.processed s3://${{ matrix.bucket }}/$latest --acl public-read
+          aws s3 cp template/$latest.processed s3://${{ matrix.bucket }}/$latest
