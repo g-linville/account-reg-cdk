@@ -17,7 +17,6 @@ type Properties struct {
 	Token       string `json:"Token,omitempty"`
 	CallbackURL string `json:"CallbackURL,omitempty"`
 	StackId     string `json:"StackId,omitempty"`
-	Region      string `json:"Region,omitempty"`
 }
 
 type Event struct {
@@ -35,7 +34,6 @@ type Payload struct {
 	ExternalID string `json:"externalID"`
 	ARN        string `json:"arn"`
 	StackID    string `json:"stackID,omitempty"`
-	Region     string `json:"region,omitempty"`
 }
 
 type Response struct {
@@ -128,7 +126,6 @@ func HandleRequest(_ context.Context, event Event) (string, error) {
 			ExternalID: event.ResourceProperties.ExternalId,
 			ARN:        event.ResourceProperties.Arn,
 			StackID:    event.ResourceProperties.StackId,
-			Region:     event.ResourceProperties.Region,
 		},
 	})
 	if err != nil {

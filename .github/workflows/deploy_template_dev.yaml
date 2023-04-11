@@ -1,4 +1,4 @@
-name: Deploy template for dev
+name: deploy-template
 
 on:
   workflow_dispatch:
@@ -10,24 +10,25 @@ on:
 
 jobs:
   deploy_template:
-    env:
-      TAG: main
+    strategy:
+      matrix:
+        include:
+          - region: "us-east-2"
+            bucket: "acorn-provisioning-cf20230327205401904900000001"
     name: Deploy template to S3
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-2
-
-      - name: Copy files to S3
+          aws-region: ${{ matrix.region }}
+      - name: Copy files to the test website with the AWS CLI
         run: |
           latest=$(ls template | sort -V | tail -1)
-          jq '.Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}" | .Resources.AcornSetAccountCredentialsLambda.Properties.Code.ImageUri = "${{ secrets.ECR_REGISTRY }}:${{ env.TAG }}"' template/$latest > template/$latest.processed
-          aws s3 cp template/$latest.processed s3://${{ secrets.CF_TEMPLATE_BUCKET }}/$latest
+          jq '.Parameters.Principal.Default = "${{ secrets.AWS_DEFAULT_PRINCIPAL }}" | .Resources.AcornSetAccountCredentialsLambda.Properties.Code.S3Bucket = "${{ matrix.bucket }}"' template/$latest > template/$latest.processed
+          aws s3 cp template/$latest.processed s3://${{ matrix.bucket }}/$latest --acl public-read

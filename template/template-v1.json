@@ -322,13 +322,15 @@
       "Type": "AWS::Lambda::Function",
       "DependsOn": "AcornLambdaRole",
       "Properties": {
-        "PackageType": "Image",
         "FunctionName": "SetAcornAccountCredentials",
         "Role": {
           "Fn::GetAtt": ["AcornLambdaRole","Arn"]
         },
+        "Runtime": "go1.x",
+        "Handler": "aws-registration-callback",
         "Code": {
-          "ImageUri": "public.ecr.aws/aps/aws-registration-callback:latest"
+          "S3Bucket" : "BUCKET",
+          "S3Key" : "aws-registration-callback.zip"
         }
       }
     },
@@ -356,9 +358,6 @@
         },
         "StackId": {
           "Ref": "AWS::StackId"
-        },
-        "Region": {
-          "Ref": "AWS::Region"
         }
       }
     }
