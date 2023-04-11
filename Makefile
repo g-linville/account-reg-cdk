@@ -7,4 +7,4 @@ package: build
 TAG ?= dev
 REGISTRY ?= workstation
 image:
-	docker build -t $(REGISTRY):$(TAG) .
+	docker buildx build -t $(REGISTRY):$(TAG) .
