@@ -7,8 +7,12 @@ For now, every time the template is updated, the version of the template should 
 There may be times when an update for dev/staging would not require this template version to be bumped, but if a version is being used in prod, the VERSION MUST BE BUMPED.
 
 ## Workflows
-There are 4 workflows:
+There are 3 workflow types:
 1. `build.yaml` - Ensures the app builds on PR
-2. `deploy_lambda_dev.yaml` - Deploys the code to AWS Lambda on each merge/push.
-3. `deploy_template_dev.yaml` - Pushes a new version of the Cloud Formation template to the S3 Bucket on each merge/push.
-4. `publish_lambda_dev.yaml` - Creates a new published version of the Lambda. This is run manually, and only needs to be run to lock in a version of the lambda for continued use. In order to use the new published version, the URL using this Lambda should be updated.
+2. `deploy_lambda_*.yaml` - Deploys the code for the Lambda function to the S3 bucket.
+3. `deploy_template_*.yaml` - Pushes a new version of the Cloud Formation template to the S3 bucket.
+
+The `dev` versions of the deploy workflows are run on each merge/push.
+The `stg` versions of the deploy workflows run on a schedule each night.
+The `prod` versions of the deploy workflows should be run manually when needed.
+Each of them can also be run manually when needed.
