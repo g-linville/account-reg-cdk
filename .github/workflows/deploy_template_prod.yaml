@@ -2,8 +2,6 @@ name: Deploy template to S3 for prod
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '00 10 * * *'   # time in UTC
 
 jobs:
   deploy_template:
