@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths-ignore:
-      - 'template/**'
-      - '.github/**'
+      - "template/**"
+      - ".github/**"
     branches:
       - main
 
@@ -16,6 +16,10 @@ jobs:
         include:
           - region: "us-east-2"
             bucket: "acorn-provisioning-cf-us-east-220230411215929005300000001"
+          - region: "us-west-2"
+            bucket: "acorn-provisioning-cf-us-west-220230413223524509000000001"
+          - region: "eu-north-1"
+            bucket: "acorn-provisioning-cf-eu-north-120230413223525295100000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:

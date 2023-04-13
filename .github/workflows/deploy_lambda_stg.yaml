@@ -3,7 +3,7 @@ name: Deploy lambda to S3 for stg
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 10 * * *'   # time in UTC
+    - cron: "00 10 * * *" # time in UTC
 
 jobs:
   deploy_lambda:
@@ -12,6 +12,10 @@ jobs:
         include:
           - region: "us-east-2"
             bucket: "acorn-provisioning-cf-us-east-220230411221247894300000001"
+          - region: "us-west-2"
+            bucket: "acorn-provisioning-cf-us-west-220230413223704926200000001"
+          - region: "eu-north-1"
+            bucket: "acorn-provisioning-cf-eu-north-120230413223705508800000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
