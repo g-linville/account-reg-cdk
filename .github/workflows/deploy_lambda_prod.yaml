@@ -11,9 +11,9 @@ jobs:
           - region: "us-east-2"
             bucket: "acorn-provisioning-cf-us-east-220230413224010722900000001"
           - region: "us-west-2"
-            bucket: ""
+            bucket: "acorn-provisioning-cf-us-west-220230413224011053200000001"
           - region: "eu-north-1"
-            bucket: ""
+            bucket: "acorn-provisioning-cf-eu-north-120230413224011490400000001"
     name: Build and deploy lambda
     runs-on: ubuntu-latest
     steps:
