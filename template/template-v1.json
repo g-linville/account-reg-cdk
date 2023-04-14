@@ -322,7 +322,17 @@
       "Type": "AWS::Lambda::Function",
       "DependsOn": "AcornLambdaRole",
       "Properties": {
-        "FunctionName": "SetAcornAccountCredentials",
+        "FunctionName": {
+          "Fn::Join": [
+            "-",
+            [
+              "acorn-set-account-credentials",
+              {
+                "Ref": "AWS::StackName"
+              }
+            ]
+          ]
+        },
         "Role": {
           "Fn::GetAtt": ["AcornLambdaRole","Arn"]
         },
