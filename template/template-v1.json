@@ -358,6 +358,9 @@
         },
         "StackId": {
           "Ref": "AWS::StackId"
+        },
+        "Region": {
+          "Ref": "AWS::Region"
         }
       }
     }
