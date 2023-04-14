@@ -265,6 +265,13 @@
               ],
               "Effect": "Allow",
               "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "lambda:DeleteFunction"
+              ],
+              "Resource": "*"
             }
           ]
         }
