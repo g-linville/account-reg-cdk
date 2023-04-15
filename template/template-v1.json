@@ -219,15 +219,9 @@
             {
               "Effect": "Allow",
               "Action": [
-                "aps:*"
-              ],
-              "Resource": "*"
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
                 "sqs:*",
-                "events:*"
+                "events:*",
+                "aps:*"
               ],
               "Resource": "*"
             },
@@ -243,7 +237,8 @@
                 "cloudformation:DescribeStackResource",
                 "cloudformation:DescribeStackResources",
                 "cloudformation:DescribeChangeSet",
-                "cloudformation:GetTemplateSummary"
+                "cloudformation:GetTemplateSummary",
+                "lambda:DeleteFunction"
               ],
               "Resource": "*"
             },
@@ -264,13 +259,6 @@
                 "ecr:PutImage"
               ],
               "Effect": "Allow",
-              "Resource": "*"
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "lambda:DeleteFunction"
-              ],
               "Resource": "*"
             }
           ]
