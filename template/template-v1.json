@@ -212,7 +212,9 @@
                 "iam:DeleteOpenIDConnectProvider",
                 "iam:UpdateOpenIDConnectProviderThumbprint",
                 "iam:AddClientIDToOpenIDConnectProvider",
-                "iam:RemoveClientIDFromOpenIDConnectProvider"
+                "iam:RemoveClientIDFromOpenIDConnectProvider",
+                "iam:GetPolicy",
+                "iam:DeletePolicy"
               ],
               "Resource": "*"
             },
@@ -238,7 +240,8 @@
                 "cloudformation:DescribeStackResources",
                 "cloudformation:DescribeChangeSet",
                 "cloudformation:GetTemplateSummary",
-                "lambda:DeleteFunction"
+                "lambda:DeleteFunction",
+                "lambda:InvokeFunction"
               ],
               "Resource": "*"
             },
