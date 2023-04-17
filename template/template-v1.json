@@ -214,7 +214,8 @@
                 "iam:AddClientIDToOpenIDConnectProvider",
                 "iam:RemoveClientIDFromOpenIDConnectProvider",
                 "iam:GetPolicy",
-                "iam:DeletePolicy"
+                "iam:DeletePolicy",
+                "iam:ListPolicyVersions"
               ],
               "Resource": "*"
             },
