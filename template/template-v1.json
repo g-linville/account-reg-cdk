@@ -224,13 +224,7 @@
               "Action": [
                 "sqs:*",
                 "events:*",
-                "aps:*"
-              ],
-              "Resource": "*"
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
+                "aps:*",
                 "cloudformation:DescribeStacks",
                 "cloudformation:CreateStack",
                 "cloudformation:UpdateStack",
@@ -242,12 +236,7 @@
                 "cloudformation:DescribeChangeSet",
                 "cloudformation:GetTemplateSummary",
                 "lambda:DeleteFunction",
-                "lambda:InvokeFunction"
-              ],
-              "Resource": "*"
-            },
-            {
-              "Action": [
+                "lambda:InvokeFunction",
                 "ecr:GetAuthorizationToken",
                 "ecr:CreateRepository",
                 "ecr:TagResource",
